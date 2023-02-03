@@ -2,10 +2,17 @@ const express = require('express');
 const app = express();
 const users = require('./users');
 
+const routeUtilisateur = require("../routes/users")
+
 const metrics = {
     requestsCount: {},
 };
 
+
+app.use(express.urlencoded({extended : true}));
+app.use(express.json());
+
+app.use("/api",routeUtilisateur);
 app.use(express.json());
 
 app.use((req, res, next) => {

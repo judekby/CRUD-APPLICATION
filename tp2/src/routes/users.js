@@ -1,8 +1,13 @@
-const express = require('express');
+const express = require ("express");
+const {
+    creerUtilisateur, 
+    ajoutEntite
+
+} = require('../controller/users');
 const router = express.Router();
-const { createUser } = require('../controllers/users');
 
-router.post('/create', createUser);
+router.route("/users").post(creerUtilisateur);
+router.route("/items").post(ajoutEntite)
 
-router.get("/find", findUser)
 module.exports = router;
+
