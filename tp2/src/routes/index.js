@@ -12,7 +12,7 @@ const metrics = {
 app.use(express.urlencoded({extended : true}));
 app.use(express.json());
 
-app.use("/api",routeUtilisateur);
+app.use(routeUtilisateur);
 app.use(express.json());
 
 app.use((req, res, next) => {

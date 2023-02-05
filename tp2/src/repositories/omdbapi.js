@@ -1,1 +1,0 @@
-// asunc function getFilm(query)

@@ -1,3 +1,4 @@
+const e = require('express');
 const { getCollection } = require('./connection');
 
 async  function  findOne(collectionName, query, options = {}) {
@@ -111,12 +112,15 @@ async function find(collectionName, query, options = {}){
 		const collection = getCollection(collectionName);
 		const result = collection.find(query, options);
 		return result;
-
 	}
 	catch(error){
 		console.log(`Erreur lors de l execution de la fonction find avec les parametres suivants: ${query}`);
+		console.log(e)
+		throw e;
 	}
 }
+
+
 
 module.exports = {
 	findOne, 

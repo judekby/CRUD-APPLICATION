@@ -1,17 +1,13 @@
+const crypto = require('crypto')
 class User{
-    constructor(nom, prenom, adresse, telephone, item){
-        this.nom = nom;
-        this.adresse = adresse;
+    constructor(name, adress, telephone, item, id){
+        this.name = name;
+        this.adress = adress;
         this.telephone = telephone;
-        this.watch_list = [item]
+        this.item = item;
+        this.id = id;
+
     }
 }
 
-class Item{
-    constructor(titre,genre, date_sortie){
-        this.titre = titre;
-        this.genre = genre;
-        this.date_sortie = date_sortie;
-    }
-}
-module.exports = {User, Item}
+module.exports = {User}
