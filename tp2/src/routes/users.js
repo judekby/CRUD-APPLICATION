@@ -2,46 +2,20 @@ const express = require ("express");
 
 const router = express.Router();
 const userControllers = require("../controllers/users.js");
+const {createUser, getAllUser} = require('../controllers/users')
 
-router.post('/users/create', async(req, res) => {
-  if(req.body.name==undefined){
-  res.status(400).json({
-      "route": "/users/create",
-      "return": "An object representing all users"
-    });
-    return;
-  }
-
-  const users = await userControllers.createUser();
-  return res.json(users);
-});
-
-
-router.post('/users/getall', async(req, res) => {
-    const users = await userControllers.getAllUser();
-    return res.json(users);
-  });
-
-
-  module.exports = router;
+router.route('/users/create').post(createUser) 
+router.route('/users/all').get(getAllUser) 
 
 
 
+// router.post('/users/all', async(req, res) => {
+//     const users = await userControllers.getAllUser();
+//     return res.json(users);
+//   });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+module.exports = router;
 
 // const express = require("express");
 // // const { createUser } = require("../controllers/users");

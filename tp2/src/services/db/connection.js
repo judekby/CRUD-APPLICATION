@@ -27,7 +27,20 @@ function getCollection(collectionName) {
     return client.db(dbName).collection(collectionName);
 }
 
+function closeConnection(){
+    if(client){
+        client.close();
+        client = null;
+    }
+}
+
+function bd(){
+    return new Db(client, "watchlist")
+}
+
 module.exports = {
     connectTodB,
     getCollection,
+    closeConnection,
+    bd
 };

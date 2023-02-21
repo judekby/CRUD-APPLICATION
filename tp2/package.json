@@ -2,7 +2,7 @@
   "name": "tp1",
   "version": "1.0.0",
   "description": "tp1",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "tp1": "node ./tp1/app.js",
     "tp2": "node ./tp2/src/app.js",

@@ -2,7 +2,8 @@ const express = require('express');
 const app = express();
 const users = require('./users');
 
-const routeUtilisateur = require("../routes/users")
+const routeUtilisateur = require("../routes/users");
+const routeItem = require("../routes/movies");
 
 const metrics = {
     requestsCount: {},
@@ -13,7 +14,8 @@ app.use(express.urlencoded({extended : true}));
 app.use(express.json());
 
 app.use(routeUtilisateur);
-app.use(express.json());
+app.use(routeItem);
+
 
 app.use((req, res, next) => {
     const currentUrlRequestsCount = metrics.requestsCount[req.url];
