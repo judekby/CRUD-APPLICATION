@@ -4,6 +4,7 @@ const users = require('./users');
 
 const routeUtilisateur = require("../routes/users");
 const routeItem = require("../routes/movies");
+const routeWatchlist = require("../routes/watchlist")
 
 const metrics = {
     requestsCount: {},
@@ -15,6 +16,7 @@ app.use(express.json());
 
 app.use(routeUtilisateur);
 app.use(routeItem);
+app.use(routeWatchlist);
 
 
 app.use((req, res, next) => {

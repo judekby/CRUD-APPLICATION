@@ -2,10 +2,11 @@ const express = require ("express");
 
 const router = express.Router();
 const userControllers = require("../controllers/users.js");
-const {createUser, getAllUser} = require('../controllers/users')
+const {createUser, getAllUser, getUserWatchlist} = require('../controllers/users')
 
 router.route('/users/create').post(createUser) 
 router.route('/users/all').get(getAllUser) 
+router.route('/users/getUserWatchlist/:owner').get(getUserWatchlist);
 
 
 
