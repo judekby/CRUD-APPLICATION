@@ -4,6 +4,7 @@ const client = require('../services/db/connection');
 const crypto = require('crypto');
 const { ObjectID } = require('bson');
 
+/*create a movie */
 const createMovie = async (req, res)=>{
     try{
         const id = crypto.randomBytes(4).toString('hex');
@@ -21,6 +22,7 @@ const createMovie = async (req, res)=>{
     }
 };
 
+/* List all of the movies */
 const getAll = async(req, res) =>{
     try{
         const cursor = client.getCollection("movies").find();
@@ -37,7 +39,7 @@ const getAll = async(req, res) =>{
     }
 };
 
-
+/*get a movie by his ID */
 const getMovie = async(req, res) =>{
     try{
         let id = new ObjectID(req.params.id)

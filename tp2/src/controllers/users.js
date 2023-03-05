@@ -18,28 +18,35 @@ const createUser = async (req, res) => {
     const result = await userCollection.insertOne(user);
 
     res.status(200).json(result);
+    
   } catch (error) {
     console.error(error);
     res.status(500).json(error);
   }
 };
 
-  const getAllUser = async(req, res) => {
-    try{
-      const cursor = userCollection.find();
-      const result = await cursor.toArray();
-      if(result.length > 0){
-        res.status(200).json(result);
-      }else{
-        res.status(204).json({msg : "User not found"});
-      }
+const getAllUser = async(req, res) => {
+  try {
+    const cursor = userCollection.find();
+    const result = await cursor.toArray();
 
-    }catch (error) {
-      console.error(error);
-      res.status(500).json(error);
+    if (result.length > 0) {
+      // Envoyer les données d'utilisateur sous forme de HTML
+      let html = " ";
+      result.forEach(user => {
+        html += `<tr><td>${user._id}</td><td>${user.name}</td><td>${user.mail}</td></tr>`;
+      });
+      html += "</tbody></table>";
+      res.send(html);
+    } else {
+      res.status(204).json({msg: "User not found"});
     }
-
+  } catch (error) {
+    console.error(error);
+    res.status(500).json(error);
   }
+}
+
 
   const updateUser = async(req, res) =>{
     try{

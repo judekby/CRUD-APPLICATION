@@ -7,7 +7,7 @@ const routes = require("./src/routes/index.js");
 
 bdd.connectTodB();
 
-const port = 3000;
-routes.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+const PORT = 3000;
+routes.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`)
 });
