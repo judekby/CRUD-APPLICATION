@@ -16,9 +16,6 @@ const metrics = {
 app.set("view engine", "ejs")
 
 app.use(bodyparser.urlencoded({ extended : true}))
-// set view engine
-// app.set("views", path.resolve(__dirname, "views/ejs"))
-
 
 
 
@@ -63,9 +60,7 @@ app.use((req, res, next) => {
 
 app.use('/users', users);
 
-//app.get('/', (req, res, next) => {
-  //  return res.send('Hello World !');
-//});
+
 
 app.get('/health', (req, res, next) => {
     return res.status(200).json({ status: 'healthy' });

@@ -31,8 +31,7 @@ const getAllUser = async(req, res) => {
     const result = await cursor.toArray();
 
     if (result.length > 0) {
-      // Envoyer les données d'utilisateur sous forme de HTML
-      let html = " ";
+      let html = "";
       result.forEach(user => {
         html += `<tr><td>${user._id}</td><td>${user.name}</td><td>${user.mail}</td></tr>`;
       });
