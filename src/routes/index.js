@@ -2,11 +2,9 @@ const express = require('express');
 const app = express();
 const users = require('./users');
 const bodyparser = require("body-parser");
-
 const routeUtilisateur = require("../routes/users");
 const routeItem = require("../routes/movies");
 const routeWatchlist = require("../routes/watchlist")
-const path = require('path')
 
 const metrics = {
     requestsCount: {},
@@ -22,10 +20,12 @@ app.use(bodyparser.urlencoded({ extended : true}))
 app.use(express.urlencoded({extended : true}));
 app.use(express.json());
 
+//main page
 app.get('/', (req, res) => {
     res.render('index');
 })
 
+//display the ejs file
 app.get('/users/create', (req, res) => {
     res.render('add_user');
 })
@@ -37,7 +37,7 @@ app.get('/movie/create', (req, res) => {
     res.render('add_movie');
 })
 
-
+//using my route
 app.use(routeUtilisateur);
 app.use(routeItem);
 app.use(routeWatchlist);

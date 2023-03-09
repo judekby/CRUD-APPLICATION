@@ -5,7 +5,7 @@ const crypto = require('crypto');
 const { ObjectID } = require('bson');
 const axios = require('axios');
 
-
+moviesCollection = client.getCollection("movies");
 
 /*create a movie */
 const createMovie = async (req, res)=>{
@@ -16,7 +16,7 @@ const createMovie = async (req, res)=>{
         const year = req.body.year;
         let movie = new Movie(id, title, language, year);
 
-        let result = await client.getCollection("movies").insertOne(movie)
+        let result = await moviesCollection.insertOne(movie);
 
         res.status(200).json(result)
     }   catch(error){
@@ -63,7 +63,7 @@ const getMovie = async(req, res) =>{
 
 
 
-//appel à l'api omdbapi
+//call the api
 const getApiMovies = async (req, res) => {
     const apiKey = '515d3c5';
     const numResults = 100;

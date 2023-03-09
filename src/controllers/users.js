@@ -49,19 +49,7 @@ const getAllUser = async(req, res) => {
   }
 }
 
-
-  const updateUser = async(req, res) =>{
-    try{
-    let id = new ObjectID(req.params.id);
-    const nName = req.params.name;
-    let result = await userCollection.updateOne({_id : id}, {$set: {name : nName}});
-  }catch(error){
-    console.error(error);
-    res.status(500).json(error);
-    }
-
-  }
-
+//get a user watchlist
   const getUserWatchlist = async(req,res)=>{
     try{
       
@@ -98,7 +86,6 @@ const addFavoris = async (req, res) => {
 
   
   
-  
 /*Update User data */
 const updateUserInfo = async(req, res)=>{
   let id = new ObjectID(req.params.id);
@@ -120,5 +107,5 @@ const updateUserInfo = async(req, res)=>{
 
 
 
-module.exports = {createUser, getAllUser, updateUser, getUserWatchlist, updateUserInfo, addFavoris };
+module.exports = {createUser, getAllUser, getUserWatchlist, updateUserInfo, addFavoris };
 
