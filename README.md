@@ -28,4 +28,4 @@ NPM INSTALL EJS
 
 ## 😴 CURRENTLY BUILDING THE APP
 
-![image](https://user-images.githubusercontent.com/98028687/224132691-63cd02e5-ced3-42c5-afe3-6d9e286c5c5e.png)
+<img width="977" alt="image" src="https://user-images.githubusercontent.com/98028687/224133408-8d542939-e401-46ac-9465-3e7899818560.png">
