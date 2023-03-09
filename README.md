@@ -25,8 +25,7 @@ NPM INSTALL EJS
     "language": "english",
     "year": "1994"
 }
-
+```
 ## 😴 CURRENTLY BUILDING THE APP
 
-
-https://images.emojiterra.com/google/noto-emoji/unicode-13.1/share/1f634.jpg![image](https://user-images.githubusercontent.com/98028687/224133817-be27d918-d480-4375-acd5-43c4dc6a0d8d.png)
+![image](https://user-images.githubusercontent.com/98028687/224134022-4456bb2f-f693-4b23-902a-dafed0b208ed.png)
