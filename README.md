@@ -5,7 +5,7 @@
 NPM INSTALL EJS
 
 ```
-## express also and axios
+## also express and axios
 ``` NPM INSTALL EXPRESS ```
 ```NPM INSTALL AXIOS ```
 
