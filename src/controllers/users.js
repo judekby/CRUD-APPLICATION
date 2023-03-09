@@ -14,6 +14,7 @@ const createUser = async (req, res) => {
     const name = req.body.name;
     const mail = req.body.mail;
     const user = new User(id, name, mail);
+    const favoris = "";
 
     const result = await userCollection.insertOne(user);
 
@@ -29,10 +30,10 @@ const getAllUser = async(req, res) => {
   try {
     const cursor = userCollection.find();
     const result = await cursor.toArray();
-
     if (result.length > 0) {
       let html = "";
       result.forEach(user => {
+        //display the html page
         html += `<tr><td>${user._id}</td><td>${user.name}</td><td>${user.mail}</td></tr>`;
       });
       html += "</tbody></table>";
@@ -77,6 +78,24 @@ const getAllUser = async(req, res) => {
     }   
 }
 
+//add to favoris a watchlist
+const addFavoris = async(req,res)=>{
+  const userId = req.params.userID;
+  const watchlistId = req.params.watchlistID;
+  try{
+    const user = await userCollection.findOneAndUpdate(
+      {"id": userID},
+      {$addToSet: {favoris : watchlistId}},
+      {new: true}
+      );
+      res.status(200).json(user);
+    } catch (err) {
+      res.status(500).json({ message: err.message });
+    }
+  };
+  
+  
+  
 /*Update User data */
 const updateUserInfo = async(req, res)=>{
   let id = new ObjectID(req.params.id);
@@ -96,5 +115,5 @@ const updateUserInfo = async(req, res)=>{
 
 
 
-module.exports = {createUser, getAllUser, updateUser, getUserWatchlist, updateUserInfo };
+module.exports = {createUser, getAllUser, updateUser, getUserWatchlist, updateUserInfo, addFavoris };
 
