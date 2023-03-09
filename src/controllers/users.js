@@ -8,13 +8,15 @@ const { ObjectID } = require('bson');
 const userCollection = client.getCollection("users");
 const watchlistCollection = client.getCollection("watchlist");
 
+//create a user
 const createUser = async (req, res) => {
   try {
     const id = crypto.randomBytes(4).toString('hex');
     const name = req.body.name;
     const mail = req.body.mail;
-    const user = new User(id, name, mail);
     const favoris = "";
+
+    const user = new User(id, name, mail, favoris);
 
     const result = await userCollection.insertOne(user);
 
@@ -79,20 +81,21 @@ const getAllUser = async(req, res) => {
 }
 
 //add to favoris a watchlist
-const addFavoris = async(req,res)=>{
-  const userId = req.params.userID;
-  const watchlistId = req.params.watchlistID;
-  try{
+const addFavoris = async (req, res) => {
+  const userId = req.params.userId;
+  const watchlistId = req.params.watchlistId;
+  try {
     const user = await userCollection.findOneAndUpdate(
-      {"id": userID},
-      {$addToSet: {favoris : watchlistId}},
-      {new: true}
-      );
-      res.status(200).json(user);
-    } catch (err) {
-      res.status(500).json({ message: err.message });
-    }
-  };
+      { _id: userId },
+      { $addToSet: { favoris: watchlistId } },
+      { new: true }
+    );
+    res.status(200).json(user);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
   
   
   
@@ -106,7 +109,9 @@ const updateUserInfo = async(req, res)=>{
     const result = await userCollection.updateMany({_id:id} ,{$set:{name : newName ,mail: newMail}});
     res.status(200).send("Your data has been modified");
   }catch(e){
-    console.error(e);
+    console.error(error);
+    res.status(500).json({ message: error.message });
+
   }
 }
 

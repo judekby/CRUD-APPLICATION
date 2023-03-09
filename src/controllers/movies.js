@@ -3,6 +3,9 @@ const crud = require('../services/db/crud');
 const client = require('../services/db/connection');
 const crypto = require('crypto');
 const { ObjectID } = require('bson');
+const axios = require('axios');
+
+
 
 /*create a movie */
 const createMovie = async (req, res)=>{
@@ -59,4 +62,36 @@ const getMovie = async(req, res) =>{
 };
 
 
-module.exports = {createMovie, getAll, getMovie}
+
+//appel à l'api omdbapi
+const getApiMovies = async (req, res) => {
+    const apiKey = '515d3c5';
+    const numResults = 100;
+    const searchTerm = req.params.search;
+    const apiUrl = `http://www.omdbapi.com/?apikey=${apiKey}&s=${searchTerm}&r=${numResults}`;
+
+  try {
+    const response = await axios.get(apiUrl);
+    const movies = response.data.Search;
+    //if results
+    if (movies) {
+      const result = movies.map(movie => ({
+        title: movie.Title,
+        genre: movie.Genre,
+        rating: movie.imdbRating,
+        year: movie.Year
+      }));
+
+      res.status(200).json(result);
+    } else {
+      res.status(404).json({ message: 'no results found' });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'an error occurs during getting the data' });
+  }
+};
+
+
+
+module.exports = {createMovie, getAll, getMovie, getApiMovies}
